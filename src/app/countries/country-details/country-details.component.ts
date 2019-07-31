@@ -27,7 +27,7 @@ export class CountryDetailsComponent implements OnInit {
       this.currentData= response[0];
      });
     });
-
+    
 
   }
 
