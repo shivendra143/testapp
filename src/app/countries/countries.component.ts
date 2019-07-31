@@ -8,23 +8,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./countries.component.scss']
 })
 export class CountriesComponent implements OnInit {
-  searchText='';
+  searchText = '';
+  public clickedEvent: Event;
   constructor(
     private router: Router
   ) { }
-  public clickedEvent: Event;
+  ngOnInit() { }
+
+  Reset(event){
+    // console.log(event)
+     this.searchText = null;
+     this.router.navigate(['/']);
+   }
 
   childEventClicked(event: Event) {
-    console.log(event)
+   // console.log(event)
      this.clickedEvent = event;
      this.Reset(event);
    }
-  ngOnInit() {
-  }
-  Reset(event){
-    console.log(event)
-    this.searchText=null;
-    this.router.navigate(['/']);
-  }
+
 
 }
