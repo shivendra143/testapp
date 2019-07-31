@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  APIBaseUrl: 'https://devapi.inmotionplatform.com',
+  APIURL: 'https://devapi.inmotionplatform.com/api/v1/',
 };
