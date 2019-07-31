@@ -1,0 +1,22 @@
+<hr>
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Capital</th>
+        <th>Currency</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let country of countries; let i = index"
+      style="cursor: pointer;"
+      routerLinkActive="active"
+      [routerLink]="[country.alpha3Code | lowercase]">
+            <td>{{country.name}}</td>
+            <td>{{country.capital}}</td>
+            <td>{{country.currencies[0].symbol}}</td>
+
+
+      </tr>
+    </tbody>
+  </table>
