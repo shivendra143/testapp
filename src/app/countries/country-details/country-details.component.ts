@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CountryService } from '../country.service';
 
@@ -7,34 +7,43 @@ import { CountryService } from '../country.service';
   templateUrl: './country-details.component.html',
   styleUrls: ['./country-details.component.scss']
 })
-export class CountryDetailsComponent implements OnInit {
+export class CountryDetailsComponent implements OnInit, OnDestroy {
 
   currentData: any;
   id: any;
+  private details:any;
 
   constructor(private countryService: CountryService,
     private router: Router,
     private route: ActivatedRoute) { }
 
+
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-     // console.log(this.id )
-     this.currentData = this.countryService.getCountriesById(this.id);
-     // console.log(this.currentData)
-     this.currentData.subscribe((response)=>{
-      console.log(response)
-      this.currentData= response[0];
-     });
+      this.GetDetails(this.id);
     });
-    
-
   }
 
+  GetDetails(val){
+    this.details = this.countryService.getCountriesById(val).subscribe(
+      response => {
+        console.log(response)
+        this.currentData = response[0];
+        // Do stuff whith your result
+      },
+      err => {
+        console.log(err.message);
+        // Do stuff whith your error
+      },
+      () => {
+        console.log('complete');
+       },
+     );
+}
 
-  onEditRecipe() {
-    this.router.navigate(['edit'], {relativeTo: this.route});
-  }
-
+ ngOnDestroy(){
+   this.details.unsubscribe();
+ }
 
 }

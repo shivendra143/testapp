@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy} from '@angular/core';
+import { Router, ActivatedRoute} from "@angular/router";
 import { CountryService } from '../country.service';
 
 
@@ -8,11 +8,12 @@ import { CountryService } from '../country.service';
   templateUrl: './country-list.component.html',
   styleUrls: ['./country-list.component.scss']
 })
-export class CountryListComponent implements OnInit{
+export class CountryListComponent implements OnInit, OnDestroy{
   countries:any =[];
   currentData:any;
   val='asia';
-
+  private list: any;
+  private search: any;
   @Input() event: Event;
 
   //More app code
@@ -45,7 +46,7 @@ export class CountryListComponent implements OnInit{
  * @param val Get all list behalf of regin function
  */
  getData(val){
-  this.countryService.getCountries(val).subscribe(
+  this.list = this.countryService.getCountries(val).subscribe(
     response => {
       //console.log(response)
       this.countries = response;
@@ -65,7 +66,7 @@ export class CountryListComponent implements OnInit{
    */
     getSearch(){
        console.log(this.event)
-       this.countryService.getCountriesById(this.event).subscribe(
+       this.search = this.countryService.getCountriesById(this.event).subscribe(
         response => {
           console.log(response)
           this.countries = response;
@@ -87,4 +88,9 @@ export class CountryListComponent implements OnInit{
        this.getData(this.val);
        this.router.navigate(['/']);
      }
+
+    ngOnDestroy(){
+      this.list.unsubscribe();
+      this.search.unsubscribe();
+    }
 }
