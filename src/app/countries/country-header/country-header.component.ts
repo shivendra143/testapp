@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
 
 
 @Component({
@@ -7,18 +7,22 @@ import { Component, OnInit, Output, EventEmitter} from '@angular/core';
   styleUrls: ['./country-header.component.scss']
 })
 export class CountryHeaderComponent implements OnInit {
-  searchText: any = { name: '' };
+  searchText: any;
   eruope:any;
   asia:any;
   status:false;
   countries:any;
   val='asia';
   constructor() { }
+  @Input() searchdata: any;
+  @Output() eventClicked = new EventEmitter<Event>();
+
 
    ngOnInit() {
+    this.searchText=this.searchdata;
+    //console.log(this.searchdata);
    }
 
-   @Output() eventClicked = new EventEmitter<Event>();
 
    //More app code
 

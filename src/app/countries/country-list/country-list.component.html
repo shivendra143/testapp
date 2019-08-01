@@ -7,8 +7,9 @@
         <th>Currency</th>
       </tr>
     </thead>
-    <tbody>
-      <tr  *ngFor="let country of countries; let i = index"
+    <tbody  *ngIf="countries[0]!=null">
+
+      <tr *ngFor="let country of countries; let i = index"
       style="cursor: pointer;"
       routerLinkActive="active"
       [routerLink]="[country.alpha3Code | lowercase]">
@@ -19,4 +20,11 @@
 
       </tr>
     </tbody>
+    <tbody   *ngIf="countries[0]==null" >
+      <tr>No data found</tr>
+    </tbody>
   </table>
+  <hr>
+  <button (click)="Reset();"> Reset</button>
+
+

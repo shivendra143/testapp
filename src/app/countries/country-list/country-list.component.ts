@@ -9,7 +9,6 @@ import { CountryService } from '../country.service';
   styleUrls: ['./country-list.component.scss']
 })
 export class CountryListComponent implements OnInit{
-  searchText: any = { name: '' };
   countries:any =[];
   currentData:any;
   val='asia';
@@ -24,6 +23,11 @@ export class CountryListComponent implements OnInit{
     private router: Router,
     private route: ActivatedRoute
   ) {}
+
+
+  ngOnInit() {
+    this.getData(this.val);
+ }
 
  /**
   * On button click get data by country name
@@ -41,26 +45,46 @@ export class CountryListComponent implements OnInit{
  * @param val Get all list behalf of regin function
  */
  getData(val){
-   this.countryService.getCountries(val).subscribe((response)=>{
-     //console.log(response)
-     this.countries = response,
-     (err) => console.log(err);
-    });
+  this.countryService.getCountries(val).subscribe(
+    response => {
+      //console.log(response)
+      this.countries = response;
+      // Do stuff whith your result
+    },
+    err => {
+      console.log(err.message)
+      // Do stuff whith your error
+    },
+    () => {
+      console.log('complete')
+     },
+   );
   }
   /**
    * Input search result through header input
    */
- getSearch(){
-  // console.log(this.event)
-  this.countryService.getCountriesById(this.event).subscribe((response)=>{
-    //console.log(response)
-    this.countries = response,
-    (err) => console.log(err)
-   });
-}
+    getSearch(){
+       console.log(this.event)
+       this.countryService.getCountriesById(this.event).subscribe(
+        response => {
+          console.log(response)
+          this.countries = response;
+          // Do stuff whith your result
+        },
+        err => {
+          console.log(err.message)
+          // Do stuff whith your error
+        },
+        () => {
+          console.log('complete')
+         },
+       );
+    }
 
-
-  ngOnInit() {
-    this.getData(this.val);
- }
+    Reset(){
+      // console.log(event)
+      //  this.searchdata = '';
+       this.getData(this.val);
+       this.router.navigate(['/']);
+     }
 }

@@ -2,7 +2,7 @@
 
    <div class="container">
 
-        <app-country-header   (eventClicked)="childEventClicked($event)"  (click)="accessFunc.getList();" (keyup.enter)="accessFunc.getSearch()"></app-country-header>
+        <app-country-header  (eventClicked)="childEventClicked($event)"  (click)="accessFunc.getList();" (keyup.enter)="accessFunc.getSearch()"></app-country-header>
 
         <div class="row col-xl-12">
           <div class="col-xl-8 custom-class">
@@ -12,7 +12,5 @@
               <router-outlet></router-outlet>
           </div>
         </div>
-        <button (click)="Reset();"> Reset</button>
-      </div>
-
-</div>
+     </div>
+ </div>
