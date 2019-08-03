@@ -1,22 +1,27 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 import { CountriesComponent } from './countries/countries.component';
 import { CountryDetailsComponent } from './countries/country-details/country-details.component';
 
 
 const appRoutes: Routes = [
-  { path: "", redirectTo: "countries", pathMatch: "full" },
+  { path: '', redirectTo: 'countries', pathMatch: 'full' },
   {
-    path: "countries",
+    path: 'countries',
     component: CountriesComponent,
     children: [
-      { path: ":id", component: CountryDetailsComponent },
+      { path: ':id',
+      component: CountryDetailsComponent
+      },
     ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [
+    RouterModule,
+    RouterModule.forRoot(appRoutes)
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

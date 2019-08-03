@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy} from '@angular/core';
-import { Router, ActivatedRoute} from "@angular/router";
+import { Component, OnInit, Input, OnDestroy} from '@angular/core';
+import { Router, ActivatedRoute} from '@angular/router';
 import { CountryService } from '../country.service';
 
 
@@ -8,17 +8,13 @@ import { CountryService } from '../country.service';
   templateUrl: './country-list.component.html',
   styleUrls: ['./country-list.component.scss']
 })
-export class CountryListComponent implements OnInit, OnDestroy{
-  countries:any =[];
-  currentData:any;
-  val='asia';
+export class CountryListComponent implements OnInit, OnDestroy {
+  countries: any = [];
+  currentData: any;
+  val = 'asia';
   private list: any;
   private search: any;
   @Input() event: Event;
-
-  //More app code
-
-
   constructor(
     private countryService: CountryService,
     private router: Router,
@@ -34,9 +30,9 @@ export class CountryListComponent implements OnInit, OnDestroy{
   * On button click get data by country name
   */
 
-  getList(){
+  getList() {
      // console.log(this.event);
-     if(this.event !=undefined ){
+     if (this.event !== undefined ) {
       this.getData(this.event);
      }
     }
@@ -45,51 +41,43 @@ export class CountryListComponent implements OnInit, OnDestroy{
  *
  * @param val Get all list behalf of regin function
  */
- getData(val){
+ getData(val) {
   this.list = this.countryService.getCountries(val).subscribe(
     response => {
-      //console.log(response)
       this.countries = response;
-      // Do stuff whith your result
     },
     err => {
-      console.log(err.message)
-      // Do stuff whith your error
+      console.log(err.message);
     },
     () => {
-      console.log('complete')
-     },
+      console.log('complete');
+     }
    );
   }
   /**
    * Input search result through header input
    */
-    getSearch(){
-       console.log(this.event)
+    getSearch() {
        this.search = this.countryService.getCountriesById(this.event).subscribe(
         response => {
-          console.log(response)
+          console.log(response);
           this.countries = response;
-          // Do stuff whith your result
-        },
+         },
         err => {
-          console.log(err.message)
-          // Do stuff whith your error
+          console.log(err.message);
         },
         () => {
-          console.log('complete')
-         },
+          console.log('complete');
+         }
        );
     }
 
-    Reset(){
-      // console.log(event)
-      //  this.searchdata = '';
+    Reset() {
        this.getData(this.val);
        this.router.navigate(['/']);
      }
 
-    ngOnDestroy(){
+    ngOnDestroy() {
       this.list.unsubscribe();
       this.search.unsubscribe();
     }

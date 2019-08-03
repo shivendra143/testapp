@@ -1,10 +1,10 @@
   <hr>
   <hr>
 
-  <h3>{{currentData.name}}</h3>
+  <h3>{{currentData?.name}}</h3>
 
-<div><h5>Area:{{currentData.area}} km</h5></div>
-<div><h5>Language: <span *ngFor="let cname of currentData.languages">{{cname.name}},</span></h5></div>
-<div><h5>Pouplation:{{currentData.population}}</h5></div>
+<div><h5>Area:{{currentData?.area}} km</h5></div>
+<div><h5>Language: <span *ngFor="let cname of currentData?.languages">{{cname?.name}},</span></h5></div>
+<div><h5>Pouplation:{{currentData?.population}}</h5></div>
 
 

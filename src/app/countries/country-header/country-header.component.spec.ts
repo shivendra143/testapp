@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CountryHeaderComponent } from './country-header.component';
+import { FormsModule } from '@angular/forms';
 
 describe('CountryHeaderComponent', () => {
   let component: CountryHeaderComponent;
@@ -8,6 +8,7 @@ describe('CountryHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [FormsModule],
       declarations: [ CountryHeaderComponent ]
     })
     .compileComponents();
@@ -19,7 +20,7 @@ describe('CountryHeaderComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+   it('should create', () => {
+     expect(component).toBeTruthy();
+   });
 });

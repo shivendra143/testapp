@@ -9,9 +9,10 @@ import { CountryService } from '../country.service';
 })
 export class CountryDetailsComponent implements OnInit, OnDestroy {
 
+  languages: any;
   currentData: any;
   id: any;
-  private details:any;
+  private details: any;
 
   constructor(private countryService: CountryService,
     private router: Router,
@@ -21,28 +22,22 @@ export class CountryDetailsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-      this.GetDetails(this.id);
-    });
+      this.GetDetails(this.id); });
   }
-
-  GetDetails(val){
+ GetDetails(val) {
     this.details = this.countryService.getCountriesById(val).subscribe(
       response => {
-        console.log(response)
         this.currentData = response[0];
-        // Do stuff whith your result
-      },
+       },
       err => {
         console.log(err.message);
-        // Do stuff whith your error
       },
       () => {
         console.log('complete');
-       },
+       }
      );
 }
-
- ngOnDestroy(){
+ngOnDestroy() {
    this.details.unsubscribe();
  }
 
