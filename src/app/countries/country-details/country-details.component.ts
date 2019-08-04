@@ -9,7 +9,6 @@ import { CountryService } from '../country.service';
 })
 export class CountryDetailsComponent implements OnInit, OnDestroy {
 
-  languages: any;
   currentData: any;
   id: any;
   private details: any;
