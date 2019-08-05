@@ -2,11 +2,11 @@
 
    <div class="container">
 
-        <app-country-header  (eventClicked)="childEventClicked($event)"  (click)="accessFunc.getList();" (keyup.enter)="accessFunc.getSearch()"></app-country-header>
+        <app-country-header #searchfun (eventClicked)="childEventClicked($event)" [sdata]="searchEvent" (click)="accessFunc.getList();" (keyup.enter)="accessFunc.getSearch()"></app-country-header>
 
         <div class="row col-xl-12">
           <div class="col-xl-8 custom-class">
-              <app-country-list [event]="clickedEvent" #accessFunc></app-country-list>
+              <app-country-list [event]="clickedEvent" (click)="searchfun.ClearInput();"  (eventClicked)="childEventClicked($event)" #accessFunc></app-country-list>
           </div>
           <div class="col-xl-4 custom-class1">
               <router-outlet></router-outlet>

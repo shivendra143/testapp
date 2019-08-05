@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import { CountryService } from '../country.service';
 
@@ -15,6 +15,7 @@ export class CountryListComponent implements OnInit, OnDestroy {
   private list: any;
   private search: any;
   @Input() event: Event;
+  @Output() searchReset = new EventEmitter<Event>();
   constructor(
     private countryService: CountryService,
     private router: Router,
@@ -72,7 +73,14 @@ export class CountryListComponent implements OnInit, OnDestroy {
        );
     }
 
+    getSearchEvent(sdata: Event): void {
+     // console.log(sdata);
+      this.Reset();
+      this.searchReset.emit(sdata);
+    }
+
     Reset() {
+     // console.log(this.val)
        this.getData(this.val);
        this.router.navigate(['/']);
      }

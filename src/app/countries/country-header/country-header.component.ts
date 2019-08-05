@@ -14,13 +14,15 @@ export class CountryHeaderComponent implements OnInit {
   countries: any;
   val = 'asia';
   constructor() { }
-  @Input() searchdata: any;
+  @Input() sdata: any;
   @Output() eventClicked = new EventEmitter<Event>();
 
+  ngOnInit() {
+   }
 
-   ngOnInit() {
-    this.searchText = this.searchdata;
-    }
+   ClearInput() {
+    this.searchText = '';
+   }
    getEvent(event: Event): void {
      this.eventClicked.emit(event);
    }
