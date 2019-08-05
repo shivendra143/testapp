@@ -8,18 +8,14 @@ import { Router } from '@angular/router';
 })
 export class CountriesComponent implements OnInit {
    public clickedEvent: Event;
-   public searchEvent: Event;
-  // searchdata: any='';
-  constructor(
+   constructor(
     private router: Router
   ) { }
   ngOnInit() { }
 
 
   childEventClicked(event: Event) {
-   // console.log(event)
      this.clickedEvent = event;
-     this.searchEvent = event;
    }
 
 
