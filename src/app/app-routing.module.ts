@@ -11,7 +11,7 @@ const appRoutes: Routes = [
     component: CountriesComponent,
     children: [
       { path: ':id',
-      component: CountryDetailsComponent
+         component: CountryDetailsComponent
       },
     ]
   }

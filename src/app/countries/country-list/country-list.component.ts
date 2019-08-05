@@ -35,6 +35,7 @@ export class CountryListComponent implements OnInit, OnDestroy {
      // console.log(this.event);
      if (this.event !== undefined ) {
       this.getData(this.event);
+      this.router.navigate(['/']);
      }
     }
 
@@ -61,9 +62,8 @@ export class CountryListComponent implements OnInit, OnDestroy {
     getSearch() {
        this.search = this.countryService.getCountriesById(this.event).subscribe(
         response => {
-          console.log(response);
           this.countries = response;
-         },
+          },
         err => {
           console.log(err.message);
         },
@@ -73,17 +73,11 @@ export class CountryListComponent implements OnInit, OnDestroy {
        );
     }
 
-    getSearchEvent(sdata: Event): void {
-     // console.log(sdata);
-      this.Reset();
-      this.searchReset.emit(sdata);
-    }
-
     Reset() {
      // console.log(this.val)
        this.getData(this.val);
        this.router.navigate(['/']);
-     }
+    }
 
     ngOnDestroy() {
       this.list.unsubscribe();
