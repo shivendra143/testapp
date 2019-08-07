@@ -18,7 +18,7 @@
       [(ngModel)]="searchText"
       placeholder="Search countries"
       (keyup.enter)="getEvent(searchText)"
-      class="form-control">
+      class="form-control" minlength="2" maxlength="3">
   </div>
 
 </div>
