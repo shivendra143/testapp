@@ -40,6 +40,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
+              "outputPath": "dist/prod",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -64,6 +65,7 @@
                   "with": "src/environments/environment.qa.ts"
                 }
               ],
+              "outputPath": "dist/qa",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,

@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  outputpath: '/dist/qatest',
   APIBaseUrl: 'https://restcountries.eu',
   APIURL: 'https://restcountries.eu/rest/v2/'
 };

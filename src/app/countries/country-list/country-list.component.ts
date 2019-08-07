@@ -85,7 +85,6 @@ export class CountryListComponent implements OnInit, OnDestroy {
 
 
     ngOnDestroy() {
-      this.list.unsubscribe();
-      this.search.unsubscribe();
+
     }
 }
