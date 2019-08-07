@@ -6,7 +6,7 @@
 
         <div class="row col-xl-12">
           <div class="col-xl-8 custom-class">
-              <app-country-list [event]="clickedEvent" (click)="searchfun.ClearInput();"  #accessFunc></app-country-list>
+              <app-country-list [event]="clickedEvent" [searchfun]="searchfun"  #accessFunc></app-country-list>
           </div>
           <div class="col-xl-4 custom-class1">
               <router-outlet></router-outlet>

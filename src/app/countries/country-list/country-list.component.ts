@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import { CountryService } from '../country.service';
+import { CountryHeaderComponent } from '../country-header/country-header.component';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { CountryService } from '../country.service';
 export class CountryListComponent implements OnInit, OnDestroy {
   countries: any = [];
   currentData: any;
+  @Input() searchfun: CountryHeaderComponent;
   val = 'asia';
   private list: any;
   private search: any;
@@ -35,7 +37,6 @@ export class CountryListComponent implements OnInit, OnDestroy {
      // console.log(this.event);
      if (this.event !== undefined ) {
       this.getData(this.event);
-      this.router.navigate(['/']);
      }
     }
 
@@ -47,6 +48,7 @@ export class CountryListComponent implements OnInit, OnDestroy {
   this.list = this.countryService.getCountries(val).subscribe(
     response => {
       this.countries = response;
+      this.router.navigate(['/']);
     },
     err => {
       console.log(err.message);
@@ -74,10 +76,13 @@ export class CountryListComponent implements OnInit, OnDestroy {
     }
 
     Reset() {
+      this.searchfun.ClearInput();
      // console.log(this.val)
        this.getData(this.val);
        this.router.navigate(['/']);
     }
+
+
 
     ngOnDestroy() {
       this.list.unsubscribe();

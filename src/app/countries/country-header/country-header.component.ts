@@ -9,10 +9,11 @@ import { Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
 export class CountryHeaderComponent implements OnInit {
   searchText: any;
   eruope: any;
-  asia: any;
   status: false;
   countries: any;
   val = 'asia';
+  europe = 'europe';
+  asia = 'asia';
   constructor() { }
   @Input() sdata: any;
   @Output() eventClicked = new EventEmitter<Event>();
@@ -23,7 +24,7 @@ export class CountryHeaderComponent implements OnInit {
    ClearInput() {
     this.searchText = '';
    }
-   getEvent(event: Event): void {
+   getEvent(event: any): void {
      this.eventClicked.emit(event);
    }
 
